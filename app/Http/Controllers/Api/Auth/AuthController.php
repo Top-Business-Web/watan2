@@ -18,6 +18,7 @@ use JWTAuth;
 use Laravel\Socialite\Facades\Socialite;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Resources\{CompanyResource, UserResources};
+use Carbon\Carbon;
 use Twilio\Rest\Client;
 
 class AuthController extends Controller
@@ -29,7 +30,7 @@ class AuthController extends Controller
      */
     public function __construct(AuthService $authService)
     {
-        $this->middleware('auth_jwt')->only(['update_profile','deleteAccount','me']);
+        $this->middleware('auth_jwt')->only(['update_profile', 'deleteAccount', 'me']);
         $this->authService = $authService;
     }
 
@@ -39,40 +40,74 @@ class AuthController extends Controller
             'phone' => 'required|numeric',
         ]);
 
+        $user = User::where('phone', $request->phone)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'رقم الهاتف غير موجود في جدول المستخدم'], 404);
+        }
+
         $accountSid = env('TWILIO_SID');
         $authToken = env('TWILIO_AUTH_TOKEN');
         $twilioNumber = env('TWILIO_WHATSAPP_NUMBER');
-
-
         $twilio = new Client($accountSid, $authToken);
 
-        $otp = rand(1000, 9999);
+        if ($user->otp && $user->otp_requested_at && Carbon::now()->diffInMinutes($user->otp_requested_at) <= 1) {
+            return response()->json(['error' => 'OTP لا يزال صالحا. يرجى الانتظار حتى انتهاء صلاحية كلمة المرور لمرة واحدة (OTP) الحالية قبل طلب كلمة مرور جديدة.'], 400);
+        }
 
+        $otp = rand(100000, 999999);
         $phoneNumber = '+20' . $request->phone;
-
         $message = "*$otp* هو رمز التحقق الخاص بك. للحفاظ على أمانك، تجنب مشاركة هذا الرمز.";
 
-        try {
-            $twilio->messages
-                ->create(
-                    "whatsapp:$phoneNumber",
-                    [
-                        'from' => "whatsapp:$twilioNumber",
-                        'body' => $message,
-                    ]
-                );
+        $user->update([
+            'otp' => $otp,
+            'otp_requested_at' => Carbon::now(),
+        ]);
 
-            return response()->json(['message' => 'OTP sent successfully', 'otp' => $otp], 200);
+        try {
+            $twilio->messages->create(
+                "whatsapp:$phoneNumber",
+                [
+                    'from' => "whatsapp:$twilioNumber",
+                    'body' => $message,
+                ]
+            );
+
+            return response()->json(['message' => 'تم ارسال الا OTP بنجاح', 'otp' => $otp], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
 
+    public function verifiedOtp(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required|numeric|min:6',
+        ]);
+
+        $otp = $request->otp;
+
+        $user = User::where('otp', $otp)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'غير صالح OTP'], 400);
+        }
+
+        if ($user->otp_requested_at && Carbon::now()->diffInMinutes($user->otp_requested_at) > 1) {
+            return response()->json(['error' => 'منتهي الصلاحية OTP'], 400);
+        }
+
+        $user->update(['otp' => null, 'otp_requested_at' => null]);
+
+        return response()->json(['message' => 'OTP تم التحقق بنجاح'], 200);
+    }
+
+
     public function login(Request $request)
     {
-       return $this->authService->login($request);
-    }//end fun
+        return $this->authService->login($request);
+    } //end fun
 
     /**
      * @param Request $request
@@ -81,7 +116,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         return $this->authService->register($request);
-    }//end fun
+    } //end fun
 
     /**
      * @return \Illuminate\Http\JsonResponse
@@ -89,16 +124,16 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         return $this->authService->logout($request);
-
-    }//end fun
-    public function update_profile(request $request){
+    } //end fun
+    public function update_profile(request $request)
+    {
         return $this->authService->update_profile($request);
-    }//end fun
+    } //end fun
 
     public function deleteAccount(Request $request)
     {
         return $this->authService->delete_account($request);
-    }//end fun
+    } //end fun
 
     public function redirectToProvider($provider)
     {
@@ -108,7 +143,6 @@ class AuthController extends Controller
         }
 
         return Socialite::driver($provider)->stateless()->redirect();
-
     }
 
     /**
@@ -124,7 +158,7 @@ class AuthController extends Controller
         if (!is_null($validated)) {
             return $validated;
         }
-//        dd(Socialite::driver("facebook")->stateless()->user());
+        //        dd(Socialite::driver("facebook")->stateless()->user());
         try {
             $user = Socialite::driver($provider)->stateless()->user();
         } catch (ClientException $exception) {
@@ -152,10 +186,10 @@ class AuthController extends Controller
             ]
         );
         Auth::login($userCreated);
-//        dd(Auth::login($userCreated));
+        //        dd(Auth::login($userCreated));
         $token = JWTAuth::fromUser($userCreated);
-        $userCreated['token'] =$token;
-        return response($token."watan-app4444");
+        $userCreated['token'] = $token;
+        return response($token . "watan-app4444");
     }
 
     /**

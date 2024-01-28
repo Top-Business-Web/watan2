@@ -34,6 +34,7 @@ use App\Http\Controllers\Api\Notifications\NotificationController;
 */
 
 Route::get('send-whatsapp-otp', [AuthController::class, 'sendWhatsappOtp']);
+Route::get('verified-otp', [AuthController::class, 'verifiedOtp']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
