@@ -1,0 +1,554 @@
+/*********************************************************************************************
+[ CSS Structure ]
+
+1. General
+2. NAVBAR
+3. HEADER
+4. MINI FEATURES
+5. FEATURES
+6. PRICING
+7. TESTIMONIALS
+8. STATISTICS
+9. TEAM
+10. FAQ
+11. BLOG
+12. SUBSCRIBE
+
+/*------------------------------------------------------------------------------------------*/
+
+/*=================================
+    1. General
+=================================*/
+@font-face {
+    font-family: montserrat;
+    /* src: url('../fonts/AraJozoor-Regular.eot'); */
+    src: url(../webfonts/montserrat-Arabic-Regular.woff);
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'Open Sans', 'montserrat', sans-serif;
+}
+.appsLand-btn i {
+    margin-right: 0;
+    margin-left: 5px;
+}
+.section-title.style-gradient  span {
+    direction: ltr;
+}
+.pull-left {
+    float: right !important;
+}
+.pull-right {
+    float: left !important;
+}
+.option-template-menu {
+    left: -250px;
+    right: auto;
+    box-shadow: 2px 1px 4px rgba(2, 3, 3, 0.15);
+}
+.option-template-menu.active {
+    right: auto;
+    left: 0;
+}
+.option-template-menu .option-template-menu-open {
+    right: -40px;
+    left: auto;
+    -webkit-border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 2px 1px 4px rgba(2, 3, 3, 0.15);
+}
+.scrollToTop i {
+    margin: 0;
+}
+/*=================================
+    2. NAVBAR
+=================================*/
+.app-links .navbar-nav {
+    float: left !important;
+}
+/*  */
+.gradient-text, .section-title.style-gradient h2, .appsLand-btn.appsLand-btn-default, .appsLand-btn.appsLand-btn-gradient:hover span, .appsLand-btn.appsLand-btn-gradient:hover i, .appsLand-btn.appsLand-btn-gradient.btn-inverse span, .appsLand-btn.appsLand-btn-gradient.btn-inverse i, .mini-feature .mini-feature-box .icon-box i, .pricing .pricing-tables .pricing-price p {
+    background: #b99503;
+    /* background: -webkit-linear-gradient(-45deg, rgb(185, 149, 3) 0%, rgb(216, 199, 130)100%);
+    background: -o-linear-gradient(-45deg, rgb(185, 149, 3) 0%, rgb(216, 199, 130)100%);
+    background: -moz-linear-gradient(-45deg, rgb(185, 149, 3) 0%, rgb(216, 199, 130)100%);
+    background: linear-gradient(-45deg, rgb(185, 149, 3) 0%, rgb(216, 199, 130)100%); */
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.section-title.style-gradient > span:before {
+    background: #b99503;
+    background: -webkit-linear-gradient(-45deg, #b99503 0%, rgba(255, 255, 255, 1.0) 100%);
+    background: -o-linear-gradient(-45deg, #b99503 0%, rgba(255, 255, 255, 1.0) 100%);
+    background: -moz-linear-gradient(-45deg, #b99503 0%, rgba(255, 255, 255, 1.0) 100%);
+    background: linear-gradient(-45deg, #b99503 0%, rgba(255, 255, 255, 1.0) 100%);
+}
+.section-title.style-gradient > span > span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid;
+    border-image: 1 linear-gradient(0deg, #fdd12f 0%, #fdd12f 100%);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    margin: 0 20px;
+    vertical-align: middle;
+}
+.section-title.style-gradient > span:after {
+    background: #b99503;
+    background: -webkit-linear-gradient(-45deg, #fdd12f 0%, rgba(255, 201, 52, 0.3) 100%);
+    background: -o-linear-gradient(-45deg, #fdd12f 0%, rgba(255, 201, 52, 0.3) 100%);
+    background: -moz-linear-gradient(-45deg, #fdd12f 0%, rgba(255, 201, 52, 0.3) 100%);
+    background: linear-gradient(-45deg, #fdd12f 0%, rgba(255, 201, 52, 0.3) 100%);
+}
+/*  */
+.imgApp{
+    width: 120px !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+@media (max-width:767px){
+    .imgApp{
+        width: 120px !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+}
+/*  */
+
+.without_bg_images .app-overlay {
+    background: linear-gradient(-45deg, rgb(185, 149, 3,.9 ) 0%, rgb(216, 199, 130)100%);
+}
+.appsLand-navbar.navBar__style-2.active-navbar, .team__style-2 .team-member .member-info {
+    background: linear-gradient(-45deg, rgb(185, 149, 3) 0%, rgb(216, 199, 130)100%);
+
+    color: rgb(255, 255, 255);
+}
+.appsLand-navbar .navbar-brand img {
+    height: 60px;
+    margin: 6px 0px;
+}
+.appsLand-navbar .dropdown-menu:before {
+    right: auto;
+    left: 20px;
+}
+.appsLand-navbar .dropdown-menu a {
+    padding: 10px 15px 10px 0;
+}
+.appsLand-navbar .menu-toggle {
+    float: left;
+}
+.appsLand-navbar .mobile-dropdown-menu > span:after {
+    right: auto;
+    left: 20px;
+}
+.appsLand-navbar .navbar-nav > li > a, .appsLand-navbar .navbar-nav > li > span {
+    font-weight: 300;
+}
+@media (max-width: 767px){
+    .appsLand-navbar .navbar-brand img {
+        margin: 0px;
+        height: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .appsLand-navbar .app-links .navbar-nav {
+        right: -300px;
+        left: auto;
+    }
+    .appsLand-navbar.mobile-menu-active .app-links .navbar-nav {
+        right: 0;
+    }
+}
+
+/*=================================
+    3. HEADER
+=================================*/
+header.appsLand-header .header-content .site-intro-content .header-links {
+    margin-right: -10px;
+    margin-left: 0;
+}
+.inner-header .header-content .header-links li {
+    padding-left: 0;
+    margin-left: 0;
+    padding-right: 15px;
+    margin-right: 15px;
+}
+.inner-header .header-content .header-links li:before {
+    right: -4px;
+    left: auto;
+}
+header.appsLand-header.custom-shape-1 .app-overlay:after {
+    transform: skewY(12deg);
+    transform-origin: top right;
+}
+
+/*=================================
+    4. MINI FEATURES
+=================================*/
+.mini-feature__style-2 .mini-feature-box .icon-box {
+    float: right;
+}
+.mini-feature__style-2 .mini-feature-box .icon-box img:nth-child(2) {
+    left: auto;
+    right: 25px;
+}
+.mini-feature__style-2 .mini-feature-box .data-box {
+    float: right;
+    padding-left: 0px;
+    padding-right: 25px;
+}
+.mini-feature__style-2 .mini-feature-box:hover .icon-box img:nth-child(2) {
+    top: calc(100% - 90px);
+    right: calc(100% - 90px);
+    left: auto;
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    -ms-transform: rotate(45deg) scale(1.5);
+    transform: rotate(45deg) scale(1.5);
+}
+h5, .h5 { font-size: 1.25rem !important; }
+
+/*=================================
+    5. FEATURES
+=================================*/
+.features__style-2 .feat-tabs li a i {
+    margin-top: 0;
+    margin-left: 10px;
+}
+.Features img {
+    vertical-align: middle !important;
+    border-style: none;
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+.Features .fa-cog {
+    background-color: #FF556E;
+}
+
+.Features i {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 1px 8px 10px #cbcbcb1c;
+    box-shadow: 0px 1px 8px 10px #cbcbcb1c;
+    margin-left: 20px;
+}
+.Features .fa-cog {
+    background-color: #FF556E;
+}
+.Features .fa-star {
+    background-color: #FFB30F;
+}
+.Features .fa-rocket {
+    background-color: #50B9E8;
+}
+.Features .fa-users {
+    background-color: #19CA94;
+}
+.fa-2x {
+    font-size: 2em;
+}
+.Features .row {
+    margin: 0px;
+}
+.Features .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.Features p {
+    font-size: 15px;
+    line-height: 28px;
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    .Features p{
+        font-size: 14px !important;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px){
+    p {
+        font-size: 14px !important;
+    }
+}
+.xc{
+    padding-bottom: 20px !important;
+    padding-top: 20px !important;
+}
+
+.gradient-bg, .appsLand-btn.appsLand-btn-gradient:before, .kayoSuccess, .mini-feature .mini-feature-box .icon-box:before, .pricing .pricing-tables .pricing-recommended .pricing-price, .faq .questions-container .panel-heading a.gradient-bg, .normal-post .entry-content .entry-post-info .posted-on, .list-post .entry-content .entry-post-info .posted-on, .loading {
+    background: #b99503;
+    background: -webkit-linear-gradient(-45deg, #b99503 0%, #b99503 100%);
+    background: -o-linear-gradient(-45deg, #b99503 0%, #b99503 100%);
+    background: -moz-linear-gradient(-45deg, #b99503 0%, #b99503 100%);
+    background: linear-gradient(-45deg, #b99503 0%, #b99503 100%);
+    color: #FFF;
+}
+/*=================================
+    6. PRICING
+=================================*/
+.pricing .pricing-tables .pricing-feature li > span:first-child {
+    float: right;
+}
+.pricing .pricing-tables .pricing-feature li > span:last-child {
+    float: left;
+}
+
+/*=================================
+    7. TESTIMONIALS
+=================================*/
+.testimonials .testimonials-template .testimonials-slide .col-left {
+    border-right: 0;
+    border-left: 1px solid #EEE;
+}
+.testimonials .testimonials-template .testimonials-slide .col-right {
+    box-shadow: 1px 0px 0px #EEE;
+}
+.table-row > [class*="col-"]:first-child {
+    padding-left: 45px !important;
+    padding-right: 0 !important;
+}
+.table-row > [class*="col-"]:last-child {
+    padding-right: 45px !important;
+    padding-left: 0 !important;
+}
+.testimonials .testimonials-template .testimonials-slide:before {
+    left: 50px;
+    right: auto;
+}
+
+/*=================================
+    8. STATISTICS
+=================================*/
+.statistics .stats {
+    padding-right: 75px;
+    padding-left: 0px;
+}
+.statistics .stats .stats-icon {
+    left: auto;
+    right: 0;
+}
+
+/*=================================
+    9. TEAM
+=================================*/
+.team p.client-career {
+    margin-bottom: 0;
+}
+
+
+/*=================================
+    10. FAQ
+=================================*/
+.faq .questions-container .panel-heading a {
+    padding: 20px 20px 20px 40px;
+}
+.faq .questions-container .panel-heading a:after {
+    left: 20px;
+    right: auto;
+}
+
+/*=================================
+    11. BLOG
+=================================*/
+.blog .normal-post .entry-content .entry-post-info .posted-on {
+    right: auto;
+    left: 25px;
+}
+.search-form .search-input-group .form-control {
+    padding: 6px 25px 6px 50px;
+}
+.search-form .search-btn {
+    float: left;
+    margin: 7px 0 7px 7px;
+}
+.categories a span {
+    float: left;
+}
+.popular-posts .post-image {
+    float: right;
+}
+.popular-posts .post-data {
+    float: right;
+    padding-left: 0px;
+    padding-right: 15px;
+}
+.blog .list-post .entry-header {
+    float: right;
+}
+.blog .list-post .entry-content-footer {
+    float: right;
+}
+.blog .list-post .entry-content .entry-post-info .posted-on {
+    right: -84px;
+    left: 0px;
+}
+.single-post .entry-Categories li {
+    padding-left: 0;
+    margin-left: 0;
+    padding-right: 15px;
+    margin-right: 15px;
+}
+.single-post .entry-Categories li:first-child {
+    padding-right: 0;
+    margin-right: 0;
+}
+.single-post .entry-Categories li:before {
+    right: -4px;
+    left: auto;
+}
+.single-post .entry-content p {
+    color: #555;
+}
+.single-post .entry-footer .post-footer-data .comment-share > li:first-child {
+    padding-right: 0px;
+    margin-right: 0px;
+    padding-left: 15px;
+    margin-left: 5px;
+    border-left: 1px solid #BBB;
+    border-right: 0;
+}
+.single-post .entry-footer .post-comments .user-photo {
+    float: right;
+}
+.single-post .entry-footer .post-comments .the-comment{
+    float: right;
+    margin-left: 0px;
+    margin-right: 30px;
+}
+.single-post .entry-footer .post-comments .the-comment .comment-box:before {
+    border: 10px solid #EEE;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    right: -20px;
+    left: 0px;
+}
+.single-post .entry-footer .post-comments .the-comment .comment-header .comment-replay {
+    left: 0;
+    right: auto;
+}
+
+/*=================================
+    12. SUBSCRIBE
+=================================*/
+.custom-input-group .form-control {
+    padding-left: 155px;
+    padding-right: 35px;
+}
+.custom-input-group .subscribe-btn {
+    float: left;
+}
+.formSend{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 3, 3, .5);
+    backdrop-filter: blur(5px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formSend.active{
+    display: none;
+}
+.formSend form{
+    width: 600px;
+    max-width: 100%;
+    margin-right: auto;margin-left: auto;
+    min-height: 600px;
+    background-color: #ffff;
+    padding: 20px 20px;
+    border-radius: 15px;
+    position: relative;
+    border-right: 5px solid #fdd12f;
+}
+.formSend form .FormInput{
+    width: 100%;
+    height: 48px;
+    margin-bottom: 15px;
+}
+.formSend form .FormInput input , .formSend form .FormInput textarea{
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(219, 219, 219);
+    background-color: transparent;
+    padding: 0px 10px;
+    border-radius: 5px;
+    transition: .3s ease-out;
+}
+.formSend form .FormInput input:hover , .formSend form .FormInput input:focus  , .formSend form .FormInput textarea:hover , .formSend form .FormInput textarea:focus{
+    outline: none;
+    box-shadow: 0 0 5px rgb(185, 149, 1 ,.5);
+    border: 1px solid #fdd12f;
+}
+.formSend form .FormInput textarea{
+    height: auto !important;
+    padding-top: 10px;
+}
+.formSend form  h3{
+    padding-bottom: 20px;
+    font-size: 28px;
+    
+}
+.formSend form .fa-xmark{
+    font-size: 28px;
+    cursor: pointer;
+    transition: .1s linear;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+.formSend form .fa-xmark:hover{
+    transform: rotate(90deg);
+}
+.SendFormB{
+    background-color: #b99503;
+    color: #ffff;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    font-size: 16px;
+    transform: translateX(-50%);
+    border: 1px solid transparent;
+    padding: 15px 50px;
+    border-radius: 20px;
+    
+}
+
+/*  */
+@media (max-width:767px){
+    .Features12{
+        padding: 80px 20px 80px 0px !important;
+    }
+}
+
+
+
+/* ************** */
