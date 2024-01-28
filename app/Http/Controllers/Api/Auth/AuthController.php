@@ -91,16 +91,16 @@ class AuthController extends Controller
         $user = User::where('otp', $otp)->first();
 
         if (!$user) {
-            return response()->json(['error' => 'غير صالح OTP'], 400);
+            return response()->json(['message' => 'غير صالح OTP', 'code' => 422], 422);
         }
 
         if ($user->otp_requested_at && Carbon::now()->diffInMinutes($user->otp_requested_at) > 1) {
-            return response()->json(['error' => 'منتهي الصلاحية OTP'], 400);
+            return response()->json(['error' => 'منتهي الصلاحية OTP', 'code' => 422], 422);
         }
 
         $user->update(['otp' => null, 'otp_requested_at' => null]);
 
-        return response()->json(['message' => 'OTP تم التحقق بنجاح'], 200);
+        return response()->json(['message' => 'OTP تم التحقق بنجاح', 'code' => 200], 200);
     }
 
 
