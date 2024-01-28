@@ -21,8 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('phone',255)->nullable();
             $table->string('password',255)->nullable();
             $table->string('image',255)->nullable()->nullable();
+            $table->integer('otp')->nullable();
             $table->enum('status',[0,1])->comment('0 is blocked , 1 is not blocked')->default('1');
             $table->rememberToken();
+            $table->timestamp('otp_requested_at');
             $table->timestamps();
         });
     }
