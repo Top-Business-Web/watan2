@@ -43,7 +43,7 @@ class AuthController extends Controller
         $user = User::where('phone', $request->phone)->first();
 
         if (!$user) {
-            return response()->json(['error' => 'رقم الهاتف غير موجود في جدول المستخدم'], 404);
+            return response()->json(['message' => 'رقم الهاتف غير موجود في جدول المستخدم', 'code' => 200], 404);
         }
 
         $accountSid = env('TWILIO_SID');
@@ -52,7 +52,7 @@ class AuthController extends Controller
         $twilio = new Client($accountSid, $authToken);
 
         if ($user->otp && $user->otp_requested_at && Carbon::now()->diffInMinutes($user->otp_requested_at) <= 1) {
-            return response()->json(['error' => 'OTP لا يزال صالحا. يرجى الانتظار حتى انتهاء صلاحية كلمة المرور لمرة واحدة (OTP) الحالية قبل طلب كلمة مرور جديدة.'], 400);
+            return response()->json(['message' => 'OTP لا يزال صالحا. يرجى الانتظار حتى انتهاء صلاحية كلمة المرور لمرة واحدة (OTP) الحالية قبل طلب كلمة مرور جديدة.', 'otp' => null, 'code' => 422], 422);
         }
 
         $otp = rand(100000, 999999);
@@ -73,7 +73,7 @@ class AuthController extends Controller
                 ]
             );
 
-            return response()->json(['message' => 'تم ارسال الا OTP بنجاح', 'otp' => $otp], 200);
+            return response()->json(['message' => 'تم ارسال الا OTP بنجاح', 'otp' => $otp, 'code' => 200], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
